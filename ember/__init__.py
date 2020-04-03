@@ -99,18 +99,18 @@ def read_vectorized_features(data_dir, subset=None, feature_version=2):
     if subset is None or subset == "train":
         X_train_path = os.path.join(data_dir, "X_train.dat")
         y_train_path = os.path.join(data_dir, "y_train.dat")
-        y_train = np.memmap(y_train_path, dtype=np.float32, mode="rw")
+        y_train = np.memmap(y_train_path, dtype=np.float32, mode="readwrite")
         N = y_train.shape[0]
-        X_train = np.memmap(X_train_path, dtype=np.float32, mode="rw", shape=(N, ndim))
+        X_train = np.memmap(X_train_path, dtype=np.float32, mode="readwrite", shape=(N, ndim))
         if subset == "train":
             return X_train, y_train
 
     if subset is None or subset == "test":
         X_test_path = os.path.join(data_dir, "X_test.dat")
         y_test_path = os.path.join(data_dir, "y_test.dat")
-        y_test = np.memmap(y_test_path, dtype=np.float32, mode="rw")
+        y_test = np.memmap(y_test_path, dtype=np.float32, mode="readwrite")
         N = y_test.shape[0]
-        X_test = np.memmap(X_test_path, dtype=np.float32, mode="rw", shape=(N, ndim))
+        X_test = np.memmap(X_test_path, dtype=np.float32, mode="readwrite", shape=(N, ndim))
         if subset == "test":
             return X_test, y_test
 
